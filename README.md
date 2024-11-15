@@ -4,7 +4,7 @@ Para iniciar por 1er vez;
 
 2- Crear un directorio vacio, copiar su ruta.
 
-3- Navegar al bin de mongoDB y ejecutar; mongod --dbpath <Ruta copiada>
+3- Navegar al bin de mongoDB y ejecutar; mongod --dbpath +Ruta copiada+
 
 Con archivos de git;
 
