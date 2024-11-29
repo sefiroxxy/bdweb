@@ -1,14 +1,31 @@
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const Connection = async () => {
     try {
-        mongoose.connect(process.env.URL)
-        console.log("Conectado :)")
-    } catch (err) {
-        console.log("Error: " + err)
-    }
-}
+        await mongoose.connect(process.env.URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
 
-Connection()
+        console.log("Conectado a MongoDB :)");
+
+        mongoose.connection.on("connected", () => {
+            console.log("Conexión establecida con MongoDB.");
+        });
+
+        mongoose.connection.on("error", (err) => {
+            console.error(`Error en la conexión con MongoDB: ${err.message}`);
+        });
+
+        mongoose.connection.on("disconnected", () => {
+            console.warn("Desconectado de MongoDB.");
+        });
+    } catch (err) {
+        console.error(`Error al conectar con MongoDB: ${err.message}`);
+    }
+};
+
+Connection();

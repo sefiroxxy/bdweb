@@ -1,0 +1,130 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+
+.hero-content {
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.hero-button {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-button:hover {
+    background-color: #e5533c;
+}
+
+.featured-products {
+    margin-top: 40px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.featured-products h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.benefits-section {
+    margin-top: 40px;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+.benefits-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.benefits-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.benefit-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.benefit-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.benefit-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.benefit-card p {
+    font-size: 1rem;
+    color: #666;
+}
