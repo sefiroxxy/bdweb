@@ -13,12 +13,12 @@ async function AdminAccount() {
                 password: hashPassword
             })
             await newAmdin.save()
-            console.log("account created")
+            console.log("Cuenta Creada")
         } else {
-            console.log("account already existed")
+            console.log("El usuario ya existe")
         }
     } catch (err) {
-        console.log("error")
+        console.log("Error")
     }
 }
 

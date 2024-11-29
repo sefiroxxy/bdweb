@@ -9,7 +9,7 @@ router.post('/register', verifyAdmin, async (req, res) => {
         const { username, password, roll } = req.body;
         const reviewer = await Reviewer.findOne({ username })
         if (reviewer) {
-            return res.json({ message: "reviewer is registered" })
+            return res.json({ message: "reviewer esta registrado" })
         }
         const hashPassword = await bcrypt.hash(password, 10)
         const newreviewer = new Reviewer({
@@ -20,7 +20,7 @@ router.post('/register', verifyAdmin, async (req, res) => {
         await newreviewer.save()
         return res.json({ registered: true })
     } catch (err) {
-        return res.json({ message: "Error in registring reviewer" })
+        return res.json({ message: "Error al registrar al usuario" })
     }
 })
 

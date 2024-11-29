@@ -5,7 +5,7 @@ dotenv.config()
 const Connection = async () => {
     try {
         mongoose.connect(process.env.URL)
-        console.log("Conectado")
+        console.log("Conectado :)")
     } catch (err) {
         console.log("Error: " + err)
     }

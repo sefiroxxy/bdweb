@@ -11,11 +11,11 @@ router.post('/login', async (req, res) => {
         if (role === 'admin') {
             const admin = await Admin.findOne({ username })
             if (!admin) {
-                return res.json({ message: "admin not registered" })
+                return res.json({ message: "aEl admin no esta regstradoo" })
             }
             const validPassword = await bcrypt.compare(password, admin.password)
             if (!validPassword) {
-                return res.json({ message: "wrong password" })
+                return res.json({ message: "Contraseña incorrecta" })
             }
             const token = jwt.sign({ username: admin.username, role: 'admin' }, process.env.Admin_Key)
             res.cookie('token', token, { httpOnly: true, secure: true })
@@ -23,11 +23,11 @@ router.post('/login', async (req, res) => {
         } else if (role === 'reviewer') {
             const reviewer = await Reviewer.findOne({ username })
             if (!reviewer) {
-                return res.json({ message: "reviewer not registered" })
+                return res.json({ message: "Reviever no esta registrado" })
             }
             const validPassword = await bcrypt.compare(password, reviewer.password)
             if (!validPassword) {
-                return res.json({ message: "wrong password" })
+                return res.json({ message: "Contraseña Incorrecta!!!" })
             }
             const token = jwt.sign({ username: reviewer.username, role: 'reviewer' }, process.env.Reviewer_Key)
             res.cookie('token', token, { httpOnly: true, secure: true })

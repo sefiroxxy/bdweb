@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import './db.js'
 import { AdminRouter } from "./routes/auth.js"
 import { ReviewerRouter } from "./routes/reviewer.js"
+
 const app = express()
 app.use(express.json())
 app.use(cors({
@@ -17,5 +18,5 @@ app.use('/auth', AdminRouter)
 app.use('/reviewer', ReviewerRouter)
 
 app.listen(process.env.PORT, () => {
-    console.log("Serve is Running");
+    console.log("El servidor esta corriendo...");
 })
