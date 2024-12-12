@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../css/listaArticulos.css";
 
 const ListaArticulos = () => {
@@ -17,14 +18,14 @@ const ListaArticulos = () => {
     const handleDelete = (id) => {
         if (window.confirm("¿Estás seguro de que deseas eliminar este artículo?")) {
             axios
-                .delete(`http://localhost:3001/articulos/${id}`)
+                .delete(`http://localhost:3001/articulos/delete/${id}`)
                 .then(() => setArticulos((prev) => prev.filter((articulo) => articulo._id !== id)))
                 .catch((err) => console.error("Error al eliminar artículo:", err));
         }
     };
 
     const handleEdit = (id) => {
-        navigate(`/editararticulo/${id}`);
+        navigate(`/updateArticulo/${id}`);
     };
 
     return (

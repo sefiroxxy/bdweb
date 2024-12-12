@@ -9,7 +9,7 @@ const ListaUsuarios = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/reviewer")
+            .get("http://localhost:3001/reviewers")
             .then((res) => setUsuarios(res.data))
             .catch((err) => console.error("Error al obtener usuarios:", err));
     }, []);
@@ -17,14 +17,14 @@ const ListaUsuarios = () => {
     const handleDelete = (id) => {
         if (window.confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
             axios
-                .delete(`http://localhost:3001/reviewer/${id}`)
+                .delete(`http://localhost:3001/reviewers/delete/${id}`)
                 .then(() => setUsuarios((prev) => prev.filter((usuario) => usuario._id !== id)))
                 .catch((err) => console.error("Error al eliminar usuario:", err));
         }
     };
 
     const handleEdit = (id) => {
-        navigate(`/editarusuario/${id}`);
+        navigate(`/updateReviewer/${id}`);
     };
 
     return (

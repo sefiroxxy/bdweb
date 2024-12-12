@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../css/AñadirReviewer.css';
 
-const AñadirReviewer = ({id}) => {
-  const [formData, setFormData] = useState({ roll: '', username: '', password: '' });
+const EditarReviewer = () => {
+    const { id } = useParams();
+  const [formData, setFormData] = useState({
+    roll: '',
+    username: '',
+    password: '',
+});
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
@@ -23,15 +29,17 @@ const AñadirReviewer = ({id}) => {
       setError('Todos los campos son obligatorios.');
       return;
     }
+    const { roll, username, password} = formData;
 
+    console.log("" + formData);
     axios
-      .post('http://localhost:3001/reviewers/register', formData)
+      .put('http://localhost:3001/reviewers/update/' + id, formData)
       .then((res) => {
-        if (res.data.registered) {
-          setSuccess('Reviewer registrado exitosamente.');
+        if (res.data.updated) {
+          setSuccess('Reviewer editado exitosamente.');
           setTimeout(() => navigate('/dashboard'), 2000);
         } else {
-          setError('Error al registrar el reviewer.');
+          setError('Error al editar el reviewer.');
         }
       })
       .catch(() => setError('Error al comunicarse con el servidor.'));
@@ -66,4 +74,4 @@ const AñadirReviewer = ({id}) => {
   );
 };
 
-export default AñadirReviewer;
+export default EditarReviewer;

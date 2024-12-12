@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 // Rutas
 app.use("/auth", AdminRouter);
-app.use("/reviewer", ReviewerRouter);
+app.use("/reviewers", ReviewerRouter);
 app.use("/articulos", ArticulosRouter); 
 
 // Inicio del servidor

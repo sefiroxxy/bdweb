@@ -11,7 +11,8 @@ import ListaArticulos from './components/listaArticulos'; // Ajuste: Nombre Pasc
 import ListaUsuarios from './components/listaUsuarios';  // Ajuste: Nombre PascalCase
 import Logout from './components/Logout';
 import axios from 'axios';
-
+import EditarArticulo from './components/editarArticulo';
+import EditarReviewer from './components/editarReviewer';
 function App() {
   const [role, setRole] = useState('');
 
@@ -43,6 +44,8 @@ function App() {
         <Route path="/añadirarticulo" element={<AñadirArticulo />} />
         <Route path="/listausuarios" element={<ListaUsuarios />} /> {/* Nueva Ruta */}
         <Route path="/listaarticulos" element={<ListaArticulos />} /> {/* Nueva Ruta */}
+        <Route path="/updateArticulo/:id" element={<EditarArticulo />} /> {/* No deberia porque tener este nombre, pero lo dejare asi */}
+        <Route path="/updateReviewer/:id" element={<EditarReviewer />} />
         <Route path="/logout" element={<Logout setRole={setRole} />} />
       </Routes>
     </BrowserRouter>

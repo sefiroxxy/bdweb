@@ -3,8 +3,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, white, #babab9);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .añadir-reviewer-form {
@@ -60,7 +60,7 @@ input {
     padding: 10px;
     font-size: 1rem;
     color: #fff;
-    background-color: #6a11cb;
+    background-color: #003c58;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -68,7 +68,7 @@ input {
 }
 
 .btn-register:hover {
-    background-color: #2575fc;
+    background-color: #056794;
 }
 
 @media (max-width: 768px) {

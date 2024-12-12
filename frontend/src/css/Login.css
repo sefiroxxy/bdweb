@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #ff7f50, #ff4500);
+  background: linear-gradient(135deg, white, #babab9);
   font-family: Arial, sans-serif;
 }
 
@@ -23,7 +23,7 @@ h2 {
 
 
 .error-message {
-  color: red;
+  color: #003c58;
   font-size: 0.9rem;
   margin-bottom: 15px;
 }
@@ -55,7 +55,7 @@ select {
   padding: 10px;
   font-size: 1rem;
   color: #fff;
-  background-color: #ff4500;
+  background-color: #003c58;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -63,7 +63,7 @@ select {
 }
 
 .btn-login:hover {
-  background-color: #e63900;
+  background-color: #056794;
 }
 
 @media (max-width: 768px) {

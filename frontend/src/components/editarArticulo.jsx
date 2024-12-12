@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../css/AñadirArticulo.css';
 
-const AñadirArticulo = ({id}) => {
+const editarArticulo = () => {
+    const { id } = useParams(); // Extract the id parameter from the URL
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -23,7 +25,7 @@ const AñadirArticulo = ({id}) => {
 
     const validateFormData = () => {
         const { name, description, price, imageUrl } = formData;
-
+        console.log("" + formData);
         if (!name || !description || !price || !imageUrl) {
             setError('Todos los campos son obligatorios.');
             return false;
@@ -60,17 +62,16 @@ const AñadirArticulo = ({id}) => {
             setLoading(false);
             return;
         }
-
         try {
-            const res = await axios.post('http://localhost:3001/articulos/add', formData, {
+            const res = await axios.put('http://localhost:3001/articulos/update/' + id, formData, {
                 withCredentials: true,
             });
 
-            if (res.data.added) {
-                setSuccess('Artículo agregado exitosamente.');
+            if (res.data.updated) {
+                setSuccess('Artículo editado exitosamente.');
                 setTimeout(() => navigate('/dashboard'), 2000);
             } else {
-                setError(res.data.message || 'Error al agregar el artículo.');
+                setError(res.data.message || 'Error al editar el artículo.');
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.message) {
@@ -80,7 +81,7 @@ const AñadirArticulo = ({id}) => {
             }
         } finally {
             setLoading(false);
-        }
+        }    
     };
 
     return (
@@ -145,4 +146,4 @@ const AñadirArticulo = ({id}) => {
     );
 };
 
-export default AñadirArticulo;
+export default editarArticulo;
