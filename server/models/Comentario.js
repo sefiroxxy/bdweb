@@ -1,4 +1,3 @@
-// models/comentario.js
 import mongoose from "mongoose";
 
 const comentarioSchema = new mongoose.Schema({

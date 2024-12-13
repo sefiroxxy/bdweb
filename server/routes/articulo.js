@@ -17,7 +17,6 @@ router.post('/add', verifyAdmin, async (req, res) => {
             return res.status(400).json({ message: 'El precio debe ser un número positivo.' });
         }
 
-        // Validar onOferta y descuento
         let ofertaBool = onOferta === true;
         let descuentoNum = Number(descuento) || 0;
         if (ofertaBool && (isNaN(descuentoNum) || descuentoNum < 0 || descuentoNum > 100)) {
@@ -49,6 +48,19 @@ router.get('/', async (req, res) => {
         return res.status(200).json(articulos);
     } catch (err) {
         return res.status(500).json({ message: 'Error al obtener los artículos.' });
+    }
+});
+
+router.get('/load/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const articulo = await Articulo.findById(id);
+        if (!articulo) {
+            return res.status(404).json({ message: 'Artículo no encontrado' });
+        }
+        return res.status(200).json(articulo);
+    } catch (err) {
+        return res.status(500).json({ message: 'Error al cargar el artículo.' });
     }
 });
 
@@ -90,13 +102,14 @@ router.put('/update/:id', verifyAdmin, async (req, res) => {
     }
 });
 
-router.delete('/delete/:id', verifyAdmin, async (req,res) => {
-    try{
+router.delete('/delete/:id', verifyAdmin, async (req, res) => {
+    try {
         const id = req.params.id;
-        const articulo = await Articulo.findByIdAndDelete(id)
-        return res.json({deleted: true, articulo})
-    }catch(err){
-        return res.json(err)
+        const articulo = await Articulo.findByIdAndDelete(id);
+        return res.json({deleted: true, articulo});
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({deleted: false, message:'Error al eliminar el artículo.'});
     }   
 });
 

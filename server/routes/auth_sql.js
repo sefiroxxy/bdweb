@@ -5,40 +5,57 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
 const router = express.Router();
 
+
 router.post('/login', async (req, res) => {
     try {
         const { username, password, role } = req.body;
-        if (role === 'admin') {
-            const admin = await Admin_sql.findOne({ username })
-            if (!admin) {
-                return res.json({ message: "aEl admin no esta regstradoo" })
-            }
-            const validPassword = await bcrypt.compare(password, admin.password)
-            if (!validPassword) {
-                return res.json({ message: "Contraseña incorrecta" })
-            }
-            const token = jwt.sign({ username: admin.username, role: 'admin' }, process.env.Admin_Key)
-            res.cookie('token', token, { httpOnly: true, secure: true })
-            return res.json({ login: true, role: 'admin' })
-        } else if (role === 'reviewer') {
-            const reviewer = await Reviewer_sql.findOne({ username })
-            if (!reviewer) {
-                return res.json({ message: "Reviever no esta registrado" })
-            }
-            const validPassword = await bcrypt.compare(password, reviewer.password)
-            if (!validPassword) {
-                return res.json({ message: "Contraseña Incorrecta!!!" })
-            }
-            const token = jwt.sign({ username: reviewer.username, role: 'reviewer' }, process.env.Reviewer_Key)
-            res.cookie('token', token, { httpOnly: true, secure: true })
-            return res.json({ login: true, role: 'reviewer' })
-        } else {
 
+        // Validate input
+        if (!username || !password || !role) {
+            return res.status(400).json({ message: "All fields are required." });
         }
-    } catch (er) {
-        res.json(er)
+
+        let user;
+        let userType;
+
+        // Check if the user is an admin
+        if (role === 'admin') {
+            user = await Admin_sql.findOne({ where: { username } });
+            userType = 'admin';
+        } 
+        // Check if the user is a reviewer
+        else if (role === 'reviewer') {
+            user = await Reviewer_sql.findOne({ where: { username } });
+            userType = 'reviewer';
+        } else {
+            return res.status(400).json({ message: "Invalid role specified." });
+        }
+
+        // If the user is not found
+        if (!user) {
+            return res.status(404).json({ message: `${userType === 'admin' ? 'Admin' : 'Reviewer'} not found.` });
+        }
+
+        // Validate the password
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            return res.status(401).json({ message: "Incorrect password." });
+        }
+
+        // Generate a token
+        const token = jwt.sign({ username: user.username, role: userType }, 
+                                userType === 'admin' ? process.env.Admin_Key : process.env.Reviewer_Key);
+
+        // Set cookie
+        res.cookie('token', token, { httpOnly: true, secure: true });
+
+        // Respond with success
+        return res.json({ login: true, role: userType });
+    } catch (error) {
+        console.error("Login error:", error);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
-})
+});
 
 const verifyAdmin = (req, res, next) => {
     const token = req.cookies.token;

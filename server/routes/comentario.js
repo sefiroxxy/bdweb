@@ -3,7 +3,6 @@ import { Comentario } from "../models/Comentario.js";
 
 const router = express.Router();
 
-// GET /comentarios - Obtener comentarios con filtros
 router.get("/", async (req, res) => {
     const { articuloId, username } = req.query;
     let filtro = {};
@@ -19,7 +18,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// POST /comentarios - Crear un comentario de un artículo
 router.post("/", async (req, res) => {
     try {
         const { articuloId, username, rating, comment } = req.body;
