@@ -6,7 +6,7 @@ import { verifyAdmin } from './auth.js';
 
 router.post('/register', async (req, res) => {
     try {
-        const { username, password, roll } = req.body;
+        const { username, password } = req.body;
         const reviewer = await Reviewer.findOne({ username })
         if (reviewer) {
             return res.json({ message: "reviewer esta registrado" })
@@ -15,7 +15,6 @@ router.post('/register', async (req, res) => {
         const newreviewer = new Reviewer({
             username,
             password: hashPassword,
-            roll: roll
         })
         await newreviewer.save()
         return res.json({ registered: true })
