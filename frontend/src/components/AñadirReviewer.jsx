@@ -29,7 +29,6 @@ const AñadirReviewer = ({id}) => {
       .then((res) => {
         if (res.data.registered) {
           setSuccess('Reviewer registrado exitosamente.');
-          setTimeout(() => navigate('/dashboard'), 2000);
         } else {
           setError('Error al registrar el reviewer.');
         }

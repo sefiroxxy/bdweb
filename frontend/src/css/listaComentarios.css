@@ -1,0 +1,90 @@
+.lista-comentarios-container {
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+.lista-comentarios-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.comentarios-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comentarios-table th,
+.comentarios-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.comentarios-table th {
+    background-color: #6c757d;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.comentarios-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.comentarios-table td:last-child {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-delete {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.page-btn:hover:not(.active) {
+    background: #f0f0f0;
+}

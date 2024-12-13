@@ -2,12 +2,12 @@ body {
   padding-top: 56px;
 }
 
-/* Si deseas personalizar hover en enlaces del navbar, por ejemplo: 
+
 .nav-link:hover {
-  background-color: #4645a0; 
+  background-color: #4491e4; 
   border-radius: 5px;
 }
-*/
+
 
 @media (max-width: 991.98px) {
   .offcanvas-collapse {
@@ -21,7 +21,7 @@ body {
     padding-left: 1rem;
     overflow-y: auto;
     visibility: hidden;
-    background-color: #343a40;
+    background-color: #217ada;
     transition: transform .3s ease-in-out, visibility .3s ease-in-out;
   }
 

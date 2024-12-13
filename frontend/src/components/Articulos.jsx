@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../css/Articulos.css";
 
 const Articulos = () => {
     const [articulos, setArticulos] = useState([]);
     const [filteredArticulos, setFilteredArticulos] = useState([]);
     const [search, setSearch] = useState("");
-
-    // Estados para filtros
     const [selectedMarcas, setSelectedMarcas] = useState([]);
     const [selectedMateriales, setSelectedMateriales] = useState([]);
-
-    // Paginación
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 40;
+    const itemsPerPage = 20;
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/articulos")
+            .get("http://localhost:3001/articulos", { withCredentials: true })
             .then((res) => {
                 setArticulos(res.data);
                 setFilteredArticulos(res.data);
@@ -25,23 +22,19 @@ const Articulos = () => {
             .catch((err) => console.error("Error al obtener los artículos:", err));
     }, []);
 
-    // Filtrado por texto
     const handleSearch = (e) => {
         const value = e.target.value.toLowerCase();
         setSearch(value);
     };
 
-    // Ejemplo de marcas y materiales disponibles (podría venir del backend, aquí se asume estático)
     const availableMarcas = ["Arcos", "Victorinox", "Zwilling", "Wüsthof"];
     const availableMateriales = ["Acero Inox", "Acero Carbono", "Cerámico", "Damascado"];
 
     const handleMarcaChange = (marca) => {
-        setCurrentPage(0); // Reiniciar a primera página al cambiar filtros
+        setCurrentPage(0);
         if (selectedMarcas.includes(marca)) {
-            // deseleccionar
             setSelectedMarcas(selectedMarcas.filter(m => m !== marca));
         } else {
-            // seleccionar
             setSelectedMarcas([...selectedMarcas, marca]);
         }
     };
@@ -55,32 +48,27 @@ const Articulos = () => {
         }
     };
 
-    // Aplicación de filtros combinados
     useEffect(() => {
         let result = articulos;
 
-        // Filtro por texto
         if (search.trim() !== "") {
             result = result.filter((articulo) =>
                 articulo.name.toLowerCase().includes(search)
             );
         }
 
-        // Filtro por marcas seleccionadas
         if (selectedMarcas.length > 0) {
             result = result.filter((articulo) => selectedMarcas.includes(articulo.marca));
         }
 
-        // Filtro por materiales seleccionados
         if (selectedMateriales.length > 0) {
             result = result.filter((articulo) => selectedMateriales.includes(articulo.material));
         }
 
         setFilteredArticulos(result);
-        setCurrentPage(0); // Al cambiar filtros o búsqueda, volver a la primera página
+        setCurrentPage(0);
     }, [articulos, search, selectedMarcas, selectedMateriales]);
 
-    // Cálculo de paginación
     const totalItems = filteredArticulos.length;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     const startIdx = currentPage * itemsPerPage;
@@ -97,7 +85,6 @@ const Articulos = () => {
             <h1>Lista de Artículos</h1>
 
             <div className="articulos-container">
-                {/* Panel de Filtros a la izquierda */}
                 <div className="filtros-panel">
                     <h2>Filtros</h2>
                     <div className="filtro-group">
@@ -133,7 +120,6 @@ const Articulos = () => {
                     </div>
                 </div>
 
-                {/* Contenido de artículos a la derecha */}
                 <div className="articulos-content">
                     <div className="search-bar">
                         <input type="text" placeholder="Buscar artículos..." value={search} onChange={handleSearch} />
@@ -141,11 +127,17 @@ const Articulos = () => {
 
                     <div className="articulos-grid">
                         {displayedArticulos.map((articulo) => (
-                            <div className="articulo-card" key={articulo.id}>
+                            <div className="articulo-card" key={articulo._id}>
                                 <img src={articulo.imageUrl} alt={articulo.name} className="articulo-image" />
                                 <div className="articulo-info">
                                     <h3>{articulo.name}</h3>
+                                    <p>{articulo.description}</p>
                                     <p className="articulo-price">${articulo.price}</p>
+                                    <div className="comentario-btn">
+                                        <Link to={`/comentarioArticulo/${articulo._id}`}>
+                                            <i className="bi bi-chat"></i> 
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -154,7 +146,6 @@ const Articulos = () => {
                         <p className="no-results">No se encontraron resultados</p>
                     )}
 
-                    {/* Paginación */}
                     {totalPages > 1 && (
                         <div className="pagination">
                             {Array.from({ length: totalPages }).map((_, index) => (

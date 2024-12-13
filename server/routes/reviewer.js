@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 const router = express.Router();
 import { verifyAdmin } from './auth.js';
 
-router.post('/register', verifyAdmin, async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         const { username, password, roll } = req.body;
         const reviewer = await Reviewer.findOne({ username })

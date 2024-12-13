@@ -13,7 +13,7 @@ const Navbar = ({ role }) => {
             };
 
             toggleButton.addEventListener('click', handleClick);
-            
+
             // Limpieza del event listener al desmontar el componente
             return () => {
                 toggleButton.removeEventListener('click', handleClick);
@@ -26,7 +26,7 @@ const Navbar = ({ role }) => {
             <div className="container-fluid">
                 {/* Marca de la web */}
                 <Link to="/" className="navbar-brand">Puchero Market</Link>
-                
+
                 {/* Botón toggler para offcanvas en pantallas pequeñas */}
                 <button className="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -47,8 +47,9 @@ const Navbar = ({ role }) => {
                                         Listas
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><Link to="/listaarticulos" className="dropdown-item">Lista Artículos</Link></li>
-                                        <li><Link to="/listausuarios" className="dropdown-item">Lista Usuarios</Link></li>
+                                        <li><Link to="/listaarticulos" className="dropdown-item">Artículos</Link></li>
+                                        <li><Link to="/listausuarios" className="dropdown-item">Usuarios</Link></li>
+                                        <li><Link to="/listacomentarios" className="dropdown-item">Comentarios</Link></li>
                                     </ul>
                                 </li>
 
@@ -68,8 +69,14 @@ const Navbar = ({ role }) => {
                     {/* Parte derecha: Login/Logout */}
                     <ul className="navbar-nav mb-2 mb-lg-0">
                         {role === "" ? (
-                            <li className="nav-item">
-                                <Link to="/login" className="nav-link">Login</Link>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Perfil
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link to="/login" className="dropdown-item">Iniciar Sesion</Link></li>
+                                    <li><Link to="/añadirreviewer" className="dropdown-item">Registrarse</Link></li>
+                                </ul>
                             </li>
                         ) : (
                             <li className="nav-item">

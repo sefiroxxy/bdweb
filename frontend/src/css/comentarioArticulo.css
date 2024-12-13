@@ -1,0 +1,61 @@
+.comentario-articulo-page {
+    max-width: 600px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.comentario-articulo-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.comentario-articulo-page p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.comentario-form .form-group {
+    margin-bottom: 15px;
+}
+
+.comentario-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.comentario-form input[type="text"],
+.comentario-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.rating-group label {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.comentario-form .btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #056794;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.comentario-form .btn-submit:hover {
+    background: #056794;
+}

@@ -1,4 +1,3 @@
-// routes/articulo.js
 import express from 'express';
 import { Articulo } from '../models/Articulo.js';
 import { verifyAdmin } from './auth.js';
@@ -28,37 +27,37 @@ router.get('/', async (req, res) => {
     }
 });
 
-// routes/articulo.js
 router.get('/load/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const articulo = await Articulo.findById(id);
-        
+        if (!articulo) {
+            return res.status(404).json({ message: "Artículo no encontrado" });
+        }
+        return res.status(200).json(articulo);
     } catch (err) {
-        return res.status(500).json({ message: 'Error al obtener los artículos.' });
+        return res.status(500).json({ message: 'Error al obtener el artículo.' });
     }
 });
 
 router.put('/update/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const articulo = await Articulo.findByIdAndUpdate(id, req.body)
+        await Articulo.findByIdAndUpdate(id, req.body)
         return res.status(202).json({ updated: true, message: 'Artículo editado exitosamente.' });
     } catch (err) {
         return res.status(500).json({ updated: false, message: 'Error al editar el artículo.' });
     }
 });
-// routes/articulo.js
 
 router.delete('/delete/:id', async (req,res) => {
     try{
         const id = req.params.id;
         const articulo = await Articulo.findByIdAndDelete(id)
-        return res.json ({deleted: true, articulo})
+        return res.json({deleted: true, articulo})
     }catch(err){
         return res.json(err)
     }   
 });
-
 
 export { router as ArticulosRouter };

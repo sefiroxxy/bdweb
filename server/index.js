@@ -6,6 +6,7 @@ import "./db.js";
 import { AdminRouter } from "./routes/auth.js";
 import { ReviewerRouter } from "./routes/reviewer.js";
 import { ArticulosRouter } from "./routes/articulo.js"; 
+import { ComentariosRouter } from "./routes/comentario.js";
 
 dotenv.config();
 
@@ -18,11 +19,12 @@ app.use(cors({
     credentials: true,
 }));
 app.use(cookieParser());
-
+    
 // Rutas
 app.use("/auth", AdminRouter);
 app.use("/reviewers", ReviewerRouter);
 app.use("/articulos", ArticulosRouter); 
+app.use("/comentarios", ComentariosRouter);
 
 // Inicio del servidor
 const PORT = process.env.PORT || 3001; // Puerto dinámico si está en producción

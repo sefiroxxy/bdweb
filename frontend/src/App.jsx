@@ -9,10 +9,12 @@ import AñadirReviewer from './components/AñadirReviewer';
 import AñadirArticulo from './components/AñadirArticulo';
 import ListaArticulos from './components/listaArticulos'; // Ajuste: Nombre PascalCase
 import ListaUsuarios from './components/listaUsuarios';  // Ajuste: Nombre PascalCase
+import ListaComentarios from './components/listaComentarios';  
 import Logout from './components/Logout';
 import axios from 'axios';
 import EditarArticulo from './components/editarArticulo';
 import EditarReviewer from './components/editarReviewer';
+import ComentarioArticulo from './components/comentarioArticulo';
 function App() {
   const [role, setRole] = useState('');
 
@@ -42,11 +44,13 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/añadirreviewer" element={<AñadirReviewer />} />
         <Route path="/añadirarticulo" element={<AñadirArticulo />} />
-        <Route path="/listausuarios" element={<ListaUsuarios />} /> {/* Nueva Ruta */}
-        <Route path="/listaarticulos" element={<ListaArticulos />} /> {/* Nueva Ruta */}
-        <Route path="/updateArticulo/:id" element={<EditarArticulo />} /> {/* No deberia porque tener este nombre, pero lo dejare asi */}
+        <Route path="/listausuarios" element={<ListaUsuarios />} /> 
+        <Route path="/listaarticulos" element={<ListaArticulos />} /> 
+        <Route path="/updateArticulo/:id" element={<EditarArticulo />} /> 
         <Route path="/updateReviewer/:id" element={<EditarReviewer />} />
         <Route path="/logout" element={<Logout setRole={setRole} />} />
+        <Route path="/comentarioArticulo/:id" element={<ComentarioArticulo/>} />
+        <Route path="/listaComentarios" element={<ListaComentarios />} />
       </Routes>
     </BrowserRouter>
   );
