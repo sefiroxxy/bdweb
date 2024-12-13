@@ -145,3 +145,13 @@ h1 {
 .page-btn:hover:not(.active) {
     background: #f0f0f0;
 }
+
+.descuento-label {
+    display: inline-block;
+    background: #dc3545;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}

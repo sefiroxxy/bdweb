@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "../css/listaArticulos.css";
 
 const ListaArticulos = () => {
@@ -35,7 +34,11 @@ const ListaArticulos = () => {
                 <thead>
                     <tr>
                         <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Tipo de Cuchillo</th>
                         <th>Precio</th>
+                        <th>En Oferta</th>
+                        <th>Descuento</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -43,7 +46,11 @@ const ListaArticulos = () => {
                     {articulos.map((articulo) => (
                         <tr key={articulo._id}>
                             <td>{articulo.name}</td>
+                            <td>{articulo.marca || "N/A"}</td>
+                            <td>{articulo.tipoCuchillo || "N/A"}</td>
                             <td>${articulo.price}</td>
+                            <td>{articulo.onOferta ? "Sí" : "No"}</td>
+                            <td>{articulo.onOferta && articulo.descuento > 0 ? `${articulo.descuento}%` : "-"}</td>
                             <td>
                                 <button className="btn-edit" onClick={() => handleEdit(articulo._id)}>
                                     Editar

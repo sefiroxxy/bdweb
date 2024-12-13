@@ -5,19 +5,28 @@
     height: 100vh;
     background: linear-gradient(135deg, white, #babab9);
     font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden; /* Para que no se salga el scroll del viewport */
 }
 
-.añadir-articulo-form {
+.form-scroll-container {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 30px;
     width: 400px;
+    max-height: 90vh; /* Limitar la altura */
+    overflow-y: auto; /* Scroll interno */
+    padding: 30px;
     text-align: center;
 }
 
+.añadir-articulo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 h2 {
-    margin-bottom: 20px;
+    margin-top: 0;
     color: #333;
     font-size: 1.8rem;
 }
@@ -35,7 +44,6 @@ h2 {
 }
 
 .form-group {
-    margin-bottom: 20px;
     text-align: left;
 }
 
@@ -47,7 +55,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -61,7 +70,13 @@ textarea {
     height: 80px;
 }
 
-.btn-submit {
+.oferta-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.btn-register {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -73,12 +88,12 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
-.btn-submit:hover {
+.btn-register:hover {
     background-color: #005bb5;
 }
 
 @media (max-width: 768px) {
-    .añadir-articulo-form {
+    .form-scroll-container {
         width: 90%;
         padding: 20px;
     }

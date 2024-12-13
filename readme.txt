@@ -16,3 +16,5 @@ Con archivos de git;
 5- npm start en // Dentro de server
 6- node seed.js // Dentro de server
 7- http://localhost:5173/ // Dentro de browser
+
+mysql password: Operation123@

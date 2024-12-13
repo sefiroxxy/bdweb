@@ -26,6 +26,7 @@ app.use("/reviewers", ReviewerRouter);
 app.use("/articulos", ArticulosRouter); 
 app.use("/comentarios", ComentariosRouter);
 
+
 // Inicio del servidor
 const PORT = process.env.PORT || 3001; // Puerto dinámico si está en producción
 app.listen(PORT, () => {
