@@ -1,16 +1,15 @@
 import bcrypt from "bcrypt";
-import { Admin_sql } from "./models/Admin_sql.js"; // Assuming you have an Admin_sql model
-import "./db_sql.js"; // Your database connection setup
+import { Admin_sql } from "./models/Admin_sql.js";
+import "./db_sql.js"; 
 
 async function AdminAccount() {
     try {
-        // Check if the admin user already exists
+        //se verifca si ya existe admin
         const adminCount = await Admin_sql.count({
             where: { username: "admin" }
         });
 
         if (adminCount === 0) {
-            // Create a new admin user with a hashed password
             const hashPassword = await bcrypt.hash("123", 10);
             await Admin_sql.create({
                 username: "admin",

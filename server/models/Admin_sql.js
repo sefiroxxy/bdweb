@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../db_sql.js'; // Import your database connection
+import sequelize from '../db_sql.js'; // Se importara la conexion
 
 const Admin_sql = sequelize.define('Admin', {
     username: {
@@ -12,10 +12,8 @@ const Admin_sql = sequelize.define('Admin', {
         allowNull: false,
     },
 }, {
-    // Additional model options can be added here
 });
 
-// Sync the model with the database
-await sequelize.sync(); // Ensure that this is called in an appropriate context
+await sequelize.sync();
 
 export { Admin_sql };

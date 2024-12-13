@@ -86,7 +86,7 @@ const verifyUser = (req, res, next) => {
 }
 
 router.get('/verify', verifyUser, (req, res) => {
-   
+
     return res.json({ login: true, role: req.role, username: req.username })
 })
 

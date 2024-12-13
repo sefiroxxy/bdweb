@@ -38,8 +38,8 @@ router.put('/update/:id', async (req, res) => {
     try {
         console.log("" + id);
         const [updated] = await Reviewer_sql.update(
-            { username, password: hashedPassword }, // Fields to update
-            { where: { id } } // Condition to find the user
+            { username, password: hashedPassword }, 
+            { where: { id } } 
         );
         return res.status(202).json({ updated: true, message: 'console.log("" + id);.' });
     } catch (err) {
@@ -51,14 +51,12 @@ router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
 
-        // Check if the reviewer exists
         const reviewer = await Reviewer_sql.findOne({ where: { id } });
 
         if (!reviewer) {
             return res.status(404).json({ deleted: false, message: "Reviewer not found" });
         }
-
-        // Proceed to delete the reviewer
+        
         await Reviewer_sql.destroy({ where: { id } });
 
         return res.json({ deleted: true, reviewer });

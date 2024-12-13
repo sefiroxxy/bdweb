@@ -6,4 +6,5 @@ const reviewerSchema = new mongoose.Schema({
 });
 
 const reviewerModel = mongoose.model('Reviewer', reviewerSchema);
+
 export { reviewerModel as Reviewer };

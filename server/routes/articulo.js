@@ -106,11 +106,11 @@ router.delete('/delete/:id', verifyAdmin, async (req, res) => {
     try {
         const id = req.params.id;
         const articulo = await Articulo.findByIdAndDelete(id);
-        return res.json({deleted: true, articulo});
-    } catch(err) {
+        return res.json({ deleted: true, articulo });
+    } catch (err) {
         console.error(err);
-        return res.status(500).json({deleted: false, message:'Error al eliminar el artículo.'});
-    }   
+        return res.status(500).json({ deleted: false, message: 'Error al eliminar el artículo.' });
+    }
 });
 
 export { router as ArticulosRouter };

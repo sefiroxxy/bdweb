@@ -11,12 +11,10 @@ import { Reviewer_sqlRouter } from "./routes/reviewer_sql.js";
 import { ArticulosRouter } from "./routes/articulo.js"; 
 import { ComentariosRouter } from "./routes/comentario.js";     
 
-
 dotenv.config();
 
 const app = express();
 
-// Middleware general
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:5173"],
@@ -24,15 +22,13 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-// Rutas
 app.use("/auth", Admin_SqlRouter);
 app.use("/reviewers", Reviewer_sqlRouter);
 app.use("/articulos", ArticulosRouter); 
 app.use("/comentarios",ComentariosRouter)
 
-// Inicio del servidor
-const PORT = process.env.PORT || 3001; // Puerto dinámico si está en producción
-const PORT_sql = process.env.PORT_sql || 3002; // Puerto dinámico si está en producción
+const PORT = process.env.PORT || 3001; 
+const PORT_sql = process.env.PORT_sql || 3002; 
 app.listen(PORT, () => {
     console.log(`El servidor MongoDB está corriendo en el puerto ${PORT}`);
 });

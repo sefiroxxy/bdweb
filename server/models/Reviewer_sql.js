@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../db_sql.js'; // Import your database connection
+import sequelize from '../db_sql.js';
 
 const Reviewer_sql = sequelize.define('Reviewer', {
     username: {
@@ -12,10 +12,8 @@ const Reviewer_sql = sequelize.define('Reviewer', {
         allowNull: false,
     },
 }, {
-    // Additional model options can be added here
 });
 
-// Sync the model with the database
-await sequelize.sync(); // Ensure that this is called in an appropriate context
+await sequelize.sync();
 
 export { Reviewer_sql };
