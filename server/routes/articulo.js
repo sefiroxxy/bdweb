@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.post('/add', verifyAdmin, async (req, res) => {
     try {
-        const { name, description, price, imageUrl, storeUrl, tipoCuchillo, onOferta, descuento } = req.body;
+        const { name, description, price, imageUrl, storeUrl, tipoMaterial, onOferta, descuento } = req.body;
 
-        if (!name || !description || !price || !imageUrl || !tipoCuchillo || !storeUrl) {
+        if (!name || !description || !price || !imageUrl || !tipoMaterial || !storeUrl) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
         }
 
@@ -29,7 +29,7 @@ router.post('/add', verifyAdmin, async (req, res) => {
             price: priceNumber,
             imageUrl,
             storeUrl,
-            tipoCuchillo,
+            tipoMaterial,
             onOferta: ofertaBool,
             descuento: descuentoNum
         });
@@ -67,9 +67,9 @@ router.get('/load/:id', async (req, res) => {
 router.put('/update/:id', verifyAdmin, async (req, res) => {
     try {
         const id = req.params.id;
-        const { name, description, price, imageUrl, storeUrl, tipoCuchillo, onOferta, descuento } = req.body;
+        const { name, description, price, imageUrl, storeUrl, tipoMaterial, onOferta, descuento } = req.body;
 
-        if (!name || !description || !price || !imageUrl || !tipoCuchillo || !storeUrl) {
+        if (!name || !description || !price || !imageUrl || !tipoMaterial || !storeUrl) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
         }
 
@@ -90,7 +90,7 @@ router.put('/update/:id', verifyAdmin, async (req, res) => {
             price: priceNumber,
             imageUrl,
             storeUrl,
-            tipoCuchillo,
+            tipoMaterial,
             onOferta: ofertaBool,
             descuento: descuentoNum
         });
